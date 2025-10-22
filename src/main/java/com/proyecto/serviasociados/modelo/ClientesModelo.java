@@ -1,6 +1,6 @@
 package com.proyecto.serviasociados.modelo;
 
-public class Cliente {
+public class ClientesModelo {
     private long idCliente;
     private String nombreCliente;
     private String telefonoCliente;
@@ -8,10 +8,10 @@ public class Cliente {
     private String direccionCliente;
 
     // Constructores
-    public Cliente() {
+    public ClientesModelo() {
     }
 
-    public Cliente(long idCliente, String nombreCliente, String telefonoCliente, String correoCliente, String direccionCliente) {
+    public ClientesModelo(long idCliente, String nombreCliente, String telefonoCliente, String correoCliente, String direccionCliente) {
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
         this.telefonoCliente = telefonoCliente;

@@ -1,6 +1,6 @@
 package com.proyecto.serviasociados.modelo;
 
-public class Mecanico {
+public class MecanicosModelo {
 
     private long idMecanico;
     private String nombreMecanico;
@@ -8,10 +8,10 @@ public class Mecanico {
     private String direccionMecanico;
 
     //Constructores
-    public Mecanico() {
+    public MecanicosModelo() {
     }
 
-    public Mecanico(long idMecanico, String nombreMecanico, String telefonoMecanico, String direccionMecanico) {
+    public MecanicosModelo(long idMecanico, String nombreMecanico, String telefonoMecanico, String direccionMecanico) {
         this.idMecanico = idMecanico;
         this.nombreMecanico = nombreMecanico;
         this.telefonoMecanico = telefonoMecanico;

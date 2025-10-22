@@ -1,4 +1,4 @@
 package com.proyecto.serviasociados.controlador;
 
-public class ConexionBDD {
+public class MenuRecepcionController {
 }

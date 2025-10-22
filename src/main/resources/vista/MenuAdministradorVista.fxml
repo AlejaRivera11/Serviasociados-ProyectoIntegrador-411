@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.MenuRecepcionController">
+   <left>
+      <AnchorPane prefHeight="500.0" prefWidth="463.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="348.0" fitWidth="455.0" layoutX="16.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/Logo.jpeg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="500.0" prefWidth="457.0" style="-fx-background-color: #8fabc3;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="56.0" layoutY="23.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="320.0" style="-fx-background-color: #003a69;" text="Clientes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="59.0" layoutY="83.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="318.0" style="-fx-background-color: #003a69;" text="Vehiculos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="57.0" layoutY="205.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="322.0" style="-fx-background-color: #003a69;" text="Agendar Cita" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="59.0" layoutY="268.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="319.0" style="-fx-background-color: #003a69;" text="Citas programadas" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="59.0" layoutY="328.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="319.0" style="-fx-background-color: #003a69;" text="Historial de citas" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="59.0" layoutY="389.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="318.0" style="-fx-background-color: #003a69;" text="Adminitración de acceso " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="57.0" layoutY="143.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="319.0" style="-fx-background-color: #003a69;" text="Mecanicos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </right>
+   <top>
+      <AnchorPane prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: #003a69;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="8.0" layoutY="11.0" prefHeight="20.0" prefWidth="295.0" text="Serviasociados - Panel de Administración" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </top>
+</BorderPane>

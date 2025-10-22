@@ -1,6 +1,6 @@
 package com.proyecto.serviasociados.modelo;
 
-public class Vehiculo {
+public class VehiculosModelo {
 
     private String placa;
     private String marca;
@@ -9,10 +9,10 @@ public class Vehiculo {
     private String color;
 
     //contructores
-    public Vehiculo() {
+    public VehiculosModelo() {
     }
 
-    public Vehiculo(String placa, String marca, String modelo, int kilometraje, String color) {
+    public VehiculosModelo(String placa, String marca, String modelo, int kilometraje, String color) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
@@ -61,3 +61,5 @@ public class Vehiculo {
         this.color = color;
     }
 }
+
+
