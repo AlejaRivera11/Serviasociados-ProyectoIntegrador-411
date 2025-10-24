@@ -1,7 +1,15 @@
 package com.proyecto.serviasociados.modelo;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.CallableStatement;
+
+import com.proyecto.serviasociados.services.ConexionBDD;
 
 public class CitaModelo {
 
@@ -15,7 +23,8 @@ public class CitaModelo {
     private int usuarioId;
 
     //constructor
-
+    public CitaModelo() {
+    }
     public CitaModelo(int citaId, LocalDate fechaRegistro, LocalTime horaRegistro, LocalDate fechaCita, LocalTime horaCita, int estadoId, String placa, int usuarioId) {
         this.citaId = citaId;
         this.fechaRegistro = fechaRegistro;
@@ -92,6 +101,90 @@ public class CitaModelo {
     public void setUsuarioId(int usuarioId) {
         this.usuarioId = usuarioId;
     }   
+
+    //otros métodos
+
+    // Método para registrar una nueva cita
+    public boolean registrarCita() {
+        String sql = "{CALL sp_insertar_cita(?, ?, ?, ?, ?, ?)}";
+        try (Connection con = ConexionBDD.getConnection();
+             CallableStatement cs = (CallableStatement) con.prepareCall(sql)) {
+                cs.setInt(1, citaId);
+                cs.setDate(2, java.sql.Date.valueOf(fechaRegistro));
+                cs.setTime(3, java.sql.Time.valueOf(horaRegistro));
+                cs.setDate(4, java.sql.Date.valueOf(fechaCita));
+                cs.setTime(5, java.sql.Time.valueOf(horaCita));
+                cs.setInt(6, estadoId);
+                cs.setString(7, placa);
+                cs.setInt(8, usuarioId);
+                cs.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error al registrar cita: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Método para actualizar una cita
+    public boolean actualizarCita() {
+        String sql = "{CALL sp_actualizar_cita(?, ?, ?, ?, ?, ?)}";
+        try (Connection con = ConexionBDD.getConnection();
+             CallableStatement cs = (CallableStatement) con.prepareCall(sql)) {
+                cs.setInt(1, citaId);
+                cs.setDate(2, java.sql.Date.valueOf(fechaRegistro));
+                cs.setTime(3, java.sql.Time.valueOf(horaRegistro));
+                cs.setDate(4, java.sql.Date.valueOf(fechaCita));
+                cs.setTime(5, java.sql.Time.valueOf(horaCita));
+                cs.setInt(6, estadoId);
+                cs.setString(7, placa);
+                cs.setInt(8, usuarioId);
+                cs.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar cita: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Método para eliminar una cita
+    public boolean eliminarCita() {
+        String sql = "{CALL sp_eliminar_cita(?)}";
+        try (Connection con = ConexionBDD.getConnection();
+             CallableStatement cs = (CallableStatement) con.prepareCall(sql)) {
+                cs.setInt(1, citaId);
+                cs.execute();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar cita: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Método para consultar una cita
+     public static List<CitaModelo> consultarCitas() {
+        List<CitaModelo> lista = new ArrayList<>();
+        String sql = "{CALL sp_listar_citas()}";
+        try (Connection con = ConexionBDD.getConnection();
+             CallableStatement cs = (CallableStatement) con.prepareCall(sql);
+             ResultSet rs = cs.executeQuery()) {
+            while (rs.next()) {
+                CitaModelo c = new CitaModelo(
+                    rs.getInt("Cita_Id"),
+                    rs.getDate("Fecha_Registro").toLocalDate(),
+                    rs.getTime("Hora_Registro").toLocalTime(),
+                    rs.getDate("Fecha_Cita").toLocalDate(),
+                    rs.getTime("Hora_Cita").toLocalTime(),
+                    rs.getInt("Estado_Id"),
+                    rs.getString("Placa"),
+                    rs.getInt("Usuario_Id")
+                );
+                lista.add(c);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al consultar citas: " + e.getMessage());
+        }
+        return lista;
+    }
 
 
 } 
