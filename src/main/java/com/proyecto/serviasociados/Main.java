@@ -9,18 +9,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //FXMLLoader loaderProf = new FXMLLoader(getClass().getResource("/vista/LoginVista.fxml"));
-        FXMLLoader loaderProf = new FXMLLoader(getClass().getResource("/vista/MenuRecepcionVista.fxml"));
-        Stage stageProf = new Stage();
-        stageProf.setScene(new Scene(loaderProf.load()));
-        stageProf.setTitle("Serviasociados");
-        stageProf.show();
-
-
-    }
-
-    public static void main(String[] args)  {
-
-        launch();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vista/LoginVista.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.setTitle("Serviasociados");
+        stage.show();
     }
 }
