@@ -37,6 +37,4 @@ public class ServicioModelo {
     public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
-
-    
 }
