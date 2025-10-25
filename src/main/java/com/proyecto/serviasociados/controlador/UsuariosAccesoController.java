@@ -127,7 +127,7 @@ public class UsuariosAccesoController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MenuAdministradorVista.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load()));
-        stage.setTitle("Inicio de sesión");
+        stage.setTitle("Panel de administrador");
         stage.show();
 
         Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

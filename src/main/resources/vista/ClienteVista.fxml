@@ -24,22 +24,22 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="920.0" spacing="30.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#insertarCliente" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#buscarCliente" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #003a69;" text="Actualizar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#actualizarCliente" style="-fx-background-color: #003a69;" text="Actualizar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Inicio" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#volverMenuPrincipal" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Inicio" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -57,14 +57,14 @@
                   <HBox prefHeight="43.0" prefWidth="920.0" spacing="30.0">
                      <children>
                         <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="73.0" text="Documento" />
-                        <TextField prefHeight="25.0" prefWidth="197.0" />
+                        <TextField fx:id="txtDocumento" prefHeight="25.0" prefWidth="197.0" />
                         <Label text="Nombre" />
-                        <TextField prefHeight="25.0" prefWidth="221.0" />
+                        <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="221.0" />
                         <Label text="Telefono">
                            <padding>
                               <Insets bottom="15.0" />
                            </padding></Label>
-                        <TextField prefHeight="25.0" prefWidth="151.0" />
+                        <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="151.0" />
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" top="15.0" />
@@ -75,25 +75,25 @@
                      <children>
                         <Label text="Correo" />
                         <Pane prefHeight="25.0" prefWidth="1.0" />
-                        <TextField prefHeight="25.0" prefWidth="200.0" />
+                        <TextField fx:id="txtCorreo" prefHeight="25.0" prefWidth="200.0" />
                         <Label text="Dirección">
                            <padding>
                               <Insets top="1.0" />
                            </padding>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="218.0" />
+                        <TextField fx:id="txtDireccion" prefHeight="25.0" prefWidth="218.0" />
                      </children>
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
                      </padding>
                   </HBox>
-                  <TableView snapToPixel="false">
+                  <TableView fx:id="tblClientes" snapToPixel="false">
                     <columns>
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="170.0" text="Documento" />
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="208.0" text="Nombre" />
-                      <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="180.0" text="Telefono" />
-                      <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="180.0" text="Correo" />
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="170.0" text="Dirección" />
+                        <TableColumn fx:id="colDocumento" editable="false" maxWidth="1.7976931348623157E308" prefWidth="170.0" text="Documento" />
+                        <TableColumn fx:id="colNombre" editable="false" maxWidth="1.7976931348623157E308" prefWidth="208.0" text="Nombre" />
+                      <TableColumn fx:id="colTelefono" editable="false" maxWidth="1.7976931348623157E308" prefWidth="180.0" text="Telefono" />
+                      <TableColumn fx:id="colCorreo" editable="false" maxWidth="1.7976931348623157E308" prefWidth="180.0" text="Correo" />
+                        <TableColumn fx:id="colDireccion" editable="false" maxWidth="1.7976931348623157E308" prefWidth="170.0" text="Dirección" />
                     </columns>
                      <opaqueInsets>
                         <Insets />

@@ -8,12 +8,16 @@ import java.util.List;
 import java.sql.CallableStatement;
 
 import com.proyecto.serviasociados.services.ConexionBDD;
+
+import javafx.scene.control.Alert;
 public class ClientesModelo {
     private int idCliente;
     private String nombreCliente;
     private String telefonoCliente;
     private String correoCliente;
     private String direccionCliente;
+
+    final private static Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
     // Constructores
     public ClientesModelo() {
@@ -84,7 +88,9 @@ public class ClientesModelo {
             cs.execute();
             return true;
         } catch (SQLException e) {
-            System.err.println("Error al registrar cliente: " + e.getMessage());
+            errorAlert.setTitle("Error");
+            errorAlert.setContentText("Error al registrar el cliente: " + e.getMessage());
+            errorAlert.show();
             return false;
         }
     }
