@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.proyecto.serviasociados.services.ConexionBDD;
 
-public class MecanicosModelo {
+public class MecanicoModelo {
 
     private int idMecanico;
     private String nombreMecanico;
@@ -17,10 +17,10 @@ public class MecanicosModelo {
     private String direccionMecanico;
 
     //Constructores
-    public MecanicosModelo() {
+    public MecanicoModelo() {
     }
 
-    public MecanicosModelo(int idMecanico, String nombreMecanico, String telefonoMecanico, String direccionMecanico) {
+    public MecanicoModelo(int idMecanico, String nombreMecanico, String telefonoMecanico, String direccionMecanico) {
         this.idMecanico = idMecanico;
         this.nombreMecanico = nombreMecanico;
         this.telefonoMecanico = telefonoMecanico;
@@ -111,14 +111,14 @@ public class MecanicosModelo {
     }
 
     // Método para consultar mecánicos
-    public static List<MecanicosModelo> consultarMecanicos() {
-        List<MecanicosModelo> lista = new ArrayList<>();
+    public static List<MecanicoModelo> consultarMecanicos() {
+        List<MecanicoModelo> lista = new ArrayList<>();
         String sql = "{CALL sp_listar_mecanicos()}";
         try (Connection con = ConexionBDD.getConnection();
              CallableStatement cs = con.prepareCall(sql);
              ResultSet rs = cs.executeQuery()) {
             while (rs.next()) {
-                MecanicosModelo m = new MecanicosModelo(
+                MecanicoModelo m = new MecanicoModelo(
                     rs.getInt("Mecanico_Id"),
                     rs.getString("Nombre_Mecanico"),
                     rs.getString("Especialidad_Mecanico"),

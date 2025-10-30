@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class UsuariosAccesoController {
+public class UsuarioAccesoController {
 
     @FXML private TableView<UsuarioAccesoModelo> tblUsuarios;
     @FXML private TableColumn<UsuarioAccesoModelo, Integer> colID;

@@ -1,18 +1,18 @@
 package com.proyecto.serviasociados.config;
 
-import com.proyecto.serviasociados.modelo.ClientesModelo;
+import com.proyecto.serviasociados.modelo.ClienteModelo;
 import com.proyecto.serviasociados.modelo.UsuarioAccesoModelo;
 
 public class AppServices {
 
     private static final UsuarioAccesoModelo USUARIO = new UsuarioAccesoModelo();
-    private static final ClientesModelo CLIENTE = new ClientesModelo();
+    private static final ClienteModelo CLIENTE = new ClienteModelo();
 
     public static UsuarioAccesoModelo getUsuarioAccesoModelo() {
         return USUARIO;
     }
 
-    public static ClientesModelo getClientesModelo() {
+    public static ClienteModelo getClienteModelo() {
         return CLIENTE;
     }
 }

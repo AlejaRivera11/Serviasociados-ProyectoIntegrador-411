@@ -10,7 +10,7 @@ import com.proyecto.serviasociados.services.ConexionBDD;
 
 import java.sql.CallableStatement;
 
-public class VehiculosModelo {
+public class VehiculoModelo {
 
     private String placa;
     private String marca;
@@ -19,10 +19,10 @@ public class VehiculosModelo {
     private String color;
     private int idCliente;  
     //contructores
-    public VehiculosModelo() {
+    public VehiculoModelo() {
     }
 
-    public VehiculosModelo(String placa, String marca, int modelo, int kilometraje, String color) {
+    public VehiculoModelo(String placa, String marca, int modelo, int kilometraje, String color) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
@@ -127,14 +127,14 @@ public class VehiculosModelo {
     }
 
     // Método para consultar vehículos  
-    public static List<VehiculosModelo> consultarVehiculos() {
-        List<VehiculosModelo> lista = new ArrayList<>();
+    public static List<VehiculoModelo> consultarVehiculos() {
+        List<VehiculoModelo> lista = new ArrayList<>();
         String sql = "{CALL sp_listar_vehiculos()}";
         try (Connection con = ConexionBDD.getConnection();
              CallableStatement cs = con.prepareCall(sql);
              ResultSet rs = cs.executeQuery()) {
             while (rs.next()) {
-                VehiculosModelo v = new VehiculosModelo(
+                VehiculoModelo v = new VehiculoModelo(
                     rs.getString("placa"),
                     rs.getString("marca"),
                     rs.getInt("modelo"),
