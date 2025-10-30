@@ -25,25 +25,53 @@
                   <Pane minWidth="70.0" prefHeight="425.0" prefWidth="70.0" HBox.hgrow="ALWAYS" />
                   <VBox alignment="CENTER" prefHeight="425.0" prefWidth="297.0" spacing="15.0">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirCliente" prefHeight="44.0" prefWidth="290.0" style="-fx-background-color: #003a69;" text="Clientes" textFill="WHITE" wrapText="true">
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirClientes" prefHeight="44.0" prefWidth="290.0" style="-fx-background-color: #003a69;" text="Clientes" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="39.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Clientes.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirVehiculo" style="-fx-background-color: #003a69;" text="Vehiculos" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="38.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Carro.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirAgendaCitas" style="-fx-background-color: #003a69;" text="Agendar Cita" textFill="WHITE" wrapText="true">
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirAgendaCita" style="-fx-background-color: #003a69;" text="Agendar Cita" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Agenda%20(2).png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirCitasProgramas" style="-fx-background-color: #003a69;" text="Citas programadas" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="59.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Agenda.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <padding>

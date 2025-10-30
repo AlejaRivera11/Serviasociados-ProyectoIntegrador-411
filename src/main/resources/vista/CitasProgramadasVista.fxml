@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.CitasProgramadasController">
+   <top>
+      <HBox prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #003a69;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="32.0" prefWidth="227.0" text="Serviasosiados - Citas programadas" textFill="WHITE">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <padding>
+                  <Insets left="15.0" top="15.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="35.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/Agenda.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="420.0" prefWidth="930.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="930.0" spacing="30.0">
+                     <children>
+                        <TextField prefHeight="27.0" prefWidth="100.0" />
+                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Inicio" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <TableView prefHeight="345.0" prefWidth="900.0">
+                    <columns>
+                      <TableColumn prefWidth="50.0" text="#" />
+                      <TableColumn prefWidth="50.0" text="Usuario" />
+                        <TableColumn prefWidth="75.0" text="Fecha" />
+                        <TableColumn prefWidth="75.0" text="Hora" />
+                        <TableColumn prefWidth="90.0" text="Placa" />
+                        <TableColumn prefWidth="120.0" text="Cliente" />
+                        <TableColumn prefWidth="150.0" text="Servicio" />
+                        <TableColumn prefWidth="120.0" text="Mecanico" />
+                        <TableColumn prefWidth="180.0" text="Estado " />
+                    </columns>
+                     <VBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

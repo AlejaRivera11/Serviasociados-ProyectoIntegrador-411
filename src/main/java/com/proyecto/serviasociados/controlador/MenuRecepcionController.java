@@ -7,13 +7,21 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class MenuRecepcionController {
 
     final Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-    @FXML void abrirAgendaCitas(ActionEvent event) {
+    @FXML void abrirAgendaCitas(ActionEvent event) throws IOException {
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/ClienteRecepcionVista.fxml"));
+        Stage stageEst = new Stage();
+        stageEst.setScene(new Scene(loaderEst.load()));
+        stageEst.setTitle("Clientes");
+        stageEst.show();
 
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML void abrirCitasProgramas(ActionEvent event) {

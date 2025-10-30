@@ -15,7 +15,7 @@ public class MenuAdministradorController {
 
     @FXML
     void abrirUsuariosAcceso(ActionEvent event) throws IOException {
-        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/UsuariosAccesoVista.fxml"));
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/UsuarioAccesoVista.fxml"));
         Stage stageEst = new Stage();
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("UsuariosAcceso");
@@ -46,7 +46,7 @@ public class MenuAdministradorController {
     }
 
     @FXML void abrirCliente(ActionEvent event) throws IOException {
-        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/ClienteVista.fxml"));
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/ClienteAdministradorVista.fxml"));
         Stage stageEst = new Stage();
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("Clientes");
@@ -56,25 +56,42 @@ public class MenuAdministradorController {
         currentStage.close();
     }
 
-    @FXML void abrirVehiculo(ActionEvent event) {
+    @FXML void abrirVehiculo(ActionEvent event) throws IOException {
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/VehiculoAdministradorVista.fxml"));
+        Stage stageEst = new Stage();
+        stageEst.setScene(new Scene(loaderEst.load()));
+        stageEst.setTitle("Vehiculos");
+        stageEst.show();
 
     }
 
-    @FXML void abrirMecanico(ActionEvent event) {
-
+    @FXML void abrirMecanico(ActionEvent event) throws IOException {
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/MecanicoVista.fxml"));
+        Stage stageEst = new Stage();
+        stageEst.setScene(new Scene(loaderEst.load()));
+        stageEst.setTitle("Mecanicos");
+        stageEst.show();
     }
 
     @FXML
-    void abrirHistorialCitas(ActionEvent event) {
-
+    void abrirHistorialCitas(ActionEvent event) throws IOException {
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/HistorialCitasVista.fxml"));
+        Stage stageEst = new Stage();
+        stageEst.setScene(new Scene(loaderEst.load()));
+        stageEst.setTitle("Historial Citas");
+        stageEst.show();
     }
 
     @FXML void abrirAgendaCita(ActionEvent event) {
 
     }
 
-    @FXML void abrirCitasProgramas(ActionEvent event) {
-
+    @FXML void abrirCitasProgramas(ActionEvent event) throws IOException {
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/CitasProgramadasVista.fxml"));
+        Stage stageEst = new Stage();
+        stageEst.setScene(new Scene(loaderEst.load()));
+        stageEst.setTitle("Citas programadas");
+        stageEst.show();
     }
 
 

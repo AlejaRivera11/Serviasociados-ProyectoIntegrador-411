@@ -29,26 +29,61 @@
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="34.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Clientes.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirVehiculo" style="-fx-background-color: #003a69;" text="Vehiculos" textFill="WHITE" wrapText="true">
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirVehiculo" style="-fx-background-color: #003a69;" text="Vehículos" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Carro.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirAgendaCita" style="-fx-background-color: #003a69;" text="Agendar Cita" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Agenda.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirCitasProgramas" style="-fx-background-color: #003a69;" text="Citas programadas" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Agenda.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirHistorialCitas" style="-fx-background-color: #003a69;" text="Historial de citas" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="29.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Historial%20(2).png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirUsuariosAcceso" style="-fx-background-color: #003a69;" text="Administración de usuarios " textFill="WHITE" wrapText="true">
                            <font>
@@ -59,6 +94,13 @@
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/Mecanico.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <padding>
