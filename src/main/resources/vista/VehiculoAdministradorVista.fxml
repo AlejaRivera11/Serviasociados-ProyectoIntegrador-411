@@ -26,27 +26,27 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="920.0" spacing="30.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#insertarVehiculo" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#buscarVehiculo" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #003a69;" text="Actualizar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#actualizarVehiculo" style="-fx-background-color: #003a69;" text="Actualizar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Eliminar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#eliminarVehiculo" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Eliminar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Inicio" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#volverMenuPrincipal" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Inicio" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -67,18 +67,18 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <TextField prefHeight="25.0" prefWidth="147.0" />
+                        <TextField fx:id="txtPlaca" prefHeight="25.0" prefWidth="147.0" />
                         <Label prefHeight="17.0" prefWidth="69.0" text="Marca">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <TextField prefHeight="25.0" prefWidth="184.0" />
+                        <TextField fx:id="txtMarca" prefHeight="25.0" prefWidth="184.0" />
                         <Label prefHeight="17.0" prefWidth="69.0" text="Modelo">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="151.0" />
+                        <TextField fx:id="txtModelo" prefHeight="25.0" prefWidth="151.0" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
@@ -98,7 +98,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
                         <Pane prefHeight="25.0" prefWidth="1.0" />
-                        <TextField prefHeight="25.0" prefWidth="155.0" />
+                        <TextField fx:id="txtColor" prefHeight="25.0" prefWidth="155.0" />
                         <Label prefHeight="18.0" prefWidth="84.0" text="Kilometraje">
                            <padding>
                               <Insets top="1.0" />
@@ -107,7 +107,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="195.0" />
+                        <TextField fx:id="txtKilometraje" prefHeight="25.0" prefWidth="195.0" />
                         <Label prefHeight="18.0" prefWidth="131.0" text="Documento Cliente">
                            <padding>
                               <Insets top="1.0" />
@@ -116,7 +116,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="165.0" />
+                        <TextField fx:id="txtDocumento" prefHeight="25.0" prefWidth="165.0" />
                      </children>
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
@@ -125,14 +125,14 @@
                         <Insets left="15.0" right="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <TableView snapToPixel="false">
+                  <TableView fx:id="tblVehiculos" snapToPixel="false">
                     <columns>
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Placa" />
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Marca" />
-                      <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Modelo" />
-                      <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Color" />
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Kilometraje" />
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="185.0" text="Documento Cliente" />
+                        <TableColumn fx:id="colPlaca" editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Placa" />
+                        <TableColumn fx:id="colMarca" editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Marca" />
+                      <TableColumn fx:id="colModelo" editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Modelo" />
+                      <TableColumn fx:id="colColor" editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Color" />
+                        <TableColumn fx:id="colKilometraje" editable="false" maxWidth="1.7976931348623157E308" prefWidth="175.0" text="Kilometraje" />
+                        <TableColumn fx:id="colDocumento" editable="false" maxWidth="1.7976931348623157E308" prefWidth="185.0" text="Documento Cliente" />
                     </columns>
                      <opaqueInsets>
                         <Insets />

@@ -63,6 +63,9 @@ public class MenuAdministradorController {
         stageEst.setTitle("Vehiculos");
         stageEst.show();
 
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
     }
 
     @FXML void abrirMecanico(ActionEvent event) throws IOException {
