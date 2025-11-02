@@ -5,9 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.proyecto.serviasociados.services.ConexionBDD;
-
 import java.sql.CallableStatement;
 
 public class VehiculoModelo {
@@ -17,20 +15,21 @@ public class VehiculoModelo {
     private int modelo;
     private int kilometraje;
     private String color;
-    private int idCliente;  
-    //contructores
+    private int idCliente;
+
     public VehiculoModelo() {
     }
 
-    public VehiculoModelo(String placa, String marca, int modelo, int kilometraje, String color) {
+    public VehiculoModelo(String placa, String marca, int modelo, int kilometraje, String color, int idCliente) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.kilometraje = kilometraje;
         this.color = color;
+        this.idCliente = idCliente;
     }
 
-    //getters y setters
+    // getters y setters
     public String getPlaca() {
         return placa;
     }
@@ -71,84 +70,98 @@ public class VehiculoModelo {
         this.color = color;
     }
 
-    //otros métodos 
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
 
     // Método para registrar un nuevo vehículo
-
-     public boolean registrarVehiculo() {
+    public boolean registrarVehiculo() throws SQLException {
         String sql = "{CALL sp_insertar_vehiculo(?, ?, ?, ?, ?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql)) {
-                cs.setString(1, placa);
-                cs.setString(2, marca);
-                cs.setInt(3, modelo);
-                cs.setString(4, color);
-                cs.setInt(5, kilometraje);
-                cs.setInt(6, idCliente);
-                cs.execute();
+                CallableStatement cs = con.prepareCall(sql)) {
+
+            cs.setString(1, placa);
+            cs.setString(2, marca);
+            cs.setInt(3, modelo);
+            cs.setString(4, color);
+            cs.setInt(5, kilometraje);
+            cs.setInt(6, idCliente);
+            cs.execute();
+
             return true;
-        } catch (SQLException e) {
-            System.err.println("Error al registrar vehículo: " + e.getMessage());
-            return false;
         }
     }
 
     // Método para actualizar vehículo
-    public boolean actualizarVehiculo() {
-        String sql = "{CALL sp_actualizar_vehiculo(?, ?, ?, ?, ?, ?)}";
+    public boolean actualizarVehiculo() throws SQLException {
+        String sql = "{CALL sp_actualizar_vehiculo(?, ?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql)) {
-                cs.setString(1, placa);
-                cs.setString(2, marca);
-                cs.setInt(3, modelo);
-                cs.setString(4, color);
-                cs.setInt(5, kilometraje);
-                cs.setInt(6, idCliente);
-                cs.execute();
+                CallableStatement cs = con.prepareCall(sql)) {
+            cs.setString(1, placa);
+            cs.setString(2, color);
+            cs.setInt(3, kilometraje);
+            cs.execute();
             return true;
-        } catch (SQLException e) {
-            System.err.println("Error al actualizar vehículo: " + e.getMessage());
-            return false;
         }
     }
 
-    // Método para eliminar vehículo    
-    public boolean eliminarVehiculo() {
+    // Método para eliminar vehículo
+    public boolean eliminarVehiculo() throws SQLException {
         String sql = "{CALL sp_eliminar_vehiculo(?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql)) {
-                cs.setString(1, placa);
-                cs.execute();
+                CallableStatement cs = con.prepareCall(sql)) {
+            cs.setString(1, placa);
+            cs.execute();
             return true;
-        } catch (SQLException e) {
-            System.err.println("Error al eliminar vehículo: " + e.getMessage());
-            return false;
         }
     }
 
-    // Método para consultar vehículos  
-    public static List<VehiculoModelo> consultarVehiculos() {
-        List<VehiculoModelo> lista = new ArrayList<>();
-        String sql = "{CALL sp_listar_vehiculos()}";
+    // Metodo para buscar vehículo por placa
+    public VehiculoModelo buscarVehiculoPorPlaca(String placa) throws SQLException {
+        VehiculoModelo vehiculo = null;
+        String sql = "{CALL sp_buscar_vehiculo(?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql);
-             ResultSet rs = cs.executeQuery()) {
+                CallableStatement cs = con.prepareCall(sql)) {
+            cs.setString(1, placa);
+            try (ResultSet rs = cs.executeQuery()) {
+                if (rs.next()) {
+                    vehiculo = new VehiculoModelo(
+                            rs.getString("Placa"),
+                            rs.getString("Marca"),
+                            rs.getInt("Modelo"),
+                            rs.getInt("Kilometraje"),
+                            rs.getString("Color"),
+                            rs.getInt("Cliente_Id"));
+                }
+            }
+        }
+        return vehiculo;
+
+    }
+
+    // Método para consultar vehículos
+    public List<VehiculoModelo> consultarVehiculos() throws SQLException {
+        List<VehiculoModelo> lista = new ArrayList<>();
+        String sql = "{CALL sp_consultar_vehiculos()}";
+        try (Connection con = ConexionBDD.getConnection();
+                CallableStatement cs = con.prepareCall(sql);
+                ResultSet rs = cs.executeQuery()) {
             while (rs.next()) {
                 VehiculoModelo v = new VehiculoModelo(
-                    rs.getString("placa"),
-                    rs.getString("marca"),
-                    rs.getInt("modelo"),
-                    rs.getInt("kilometraje"),
-                    rs.getString("color")
-                );
+                        rs.getString("Placa"),
+                        rs.getString("Marca"),
+                        rs.getInt("Modelo"),
+                        rs.getInt("Kilometraje"),
+                        rs.getString("Color"),
+                        rs.getInt("Cliente_Id"));
                 lista.add(v);
             }
-        } catch (SQLException e) {
-            System.err.println("Error al consultar vehículos: " + e.getMessage());
         }
         return lista;
     }
 
 }
-
-

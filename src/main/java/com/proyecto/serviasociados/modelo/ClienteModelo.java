@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.CallableStatement;
-
 import com.proyecto.serviasociados.services.ConexionBDD;
-
 
 public class ClienteModelo {
     private int idCliente;
@@ -17,13 +15,12 @@ public class ClienteModelo {
     private String correoCliente;
     private String direccionCliente;
 
-
-
     // Constructores
     public ClienteModelo() {
     }
 
-    public ClienteModelo(int idCliente, String nombreCliente, String telefonoCliente, String correoCliente, String direccionCliente) {
+    public ClienteModelo(int idCliente, String nombreCliente, String telefonoCliente, String correoCliente,
+            String direccionCliente) {
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
         this.telefonoCliente = telefonoCliente;
@@ -32,7 +29,7 @@ public class ClienteModelo {
     }
 
     // Getters y Setters
-    public long getIdCliente() {
+    public int getIdCliente() {
         return idCliente;
     }
 
@@ -71,13 +68,12 @@ public class ClienteModelo {
     public void setDireccionCliente(String direccionCliente) {
         this.direccionCliente = direccionCliente;
     }
-    
 
     // Método para registrar un nuevo cliente
-    public boolean registrarCliente() { 
+    public boolean registrarCliente() throws SQLException {
         String sql = "{CALL sp_insertar_cliente(?, ?, ?, ?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql)) {
+                CallableStatement cs = con.prepareCall(sql)) {
             cs.setInt(1, idCliente);
             cs.setString(2, nombreCliente);
             cs.setString(3, telefonoCliente);
@@ -85,17 +81,15 @@ public class ClienteModelo {
             cs.setString(5, direccionCliente);
             cs.execute();
             return true;
-        } catch (SQLException e) {
-            System.err.println("Error al registrar cliente: " + e.getMessage());
-            return false;
         }
+
     }
 
-     //Método para actualizar Cliente
-     public boolean actualizarCliente() {
+    // Método para actualizar Cliente
+    public boolean actualizarCliente() throws SQLException {
         String sql = "{CALL sp_actualizar_cliente(?, ?, ?, ?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql)) {
+                CallableStatement cs = con.prepareCall(sql)) {
             cs.setInt(1, idCliente);
             cs.setString(2, nombreCliente);
             cs.setString(3, telefonoCliente);
@@ -103,33 +97,26 @@ public class ClienteModelo {
             cs.setString(5, direccionCliente);
             cs.execute();
             return true;
-        } catch (SQLException e) {
-            System.err.println("Error al actualizar cliente: " + e.getMessage());
-            return false;
         }
     }
 
     // Método para eliminar cliente
-    public boolean eliminarCliente(int idCliente) {
+    public boolean eliminarCliente(int idCliente) throws SQLException {
         String sql = "{CALL sp_eliminar_cliente(?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql)) {
+                CallableStatement cs = con.prepareCall(sql)) {
             cs.setInt(1, idCliente);
             cs.execute();
             return true;
-        } catch (SQLException e) {
-            System.err.println("Error al eliminar cliente: " + e.getMessage());
-            return false;
         }
     }
 
-
-    //Metodod para buscar un cliente por su id
-    public ClienteModelo buscarCliente(int idCliente) {
+    // Metodod para buscar un cliente por su id
+    public ClienteModelo buscarCliente(int idCliente) throws SQLException {
         ClienteModelo cliente = null;
         String sql = "{CALL sp_buscar_cliente(?)}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql)) {
+                CallableStatement cs = con.prepareCall(sql)) {
             cs.setInt(1, idCliente);
             try (ResultSet rs = cs.executeQuery()) {
                 if (rs.next()) {
@@ -141,19 +128,17 @@ public class ClienteModelo {
                     cliente.setDireccionCliente(rs.getString("Direccion_Cliente"));
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Error al buscar cliente: " + e.getMessage());
         }
         return cliente;
     }
 
-    //Metodo para consultar todos los clientes
-    public List<ClienteModelo> consultarClientes() {
+    // Metodo para consultar todos los clientes
+    public List<ClienteModelo> consultarClientes() throws SQLException {
         List<ClienteModelo> clientes = new ArrayList<>();
         String sql = "{CALL sp_consultar_clientes()}";
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = con.prepareCall(sql);
-             ResultSet rs = cs.executeQuery()) {
+                CallableStatement cs = con.prepareCall(sql);
+                ResultSet rs = cs.executeQuery()) {
             while (rs.next()) {
                 ClienteModelo cliente = new ClienteModelo();
                 cliente.setIdCliente(rs.getInt("Cliente_Id"));
@@ -163,13 +148,8 @@ public class ClienteModelo {
                 cliente.setDireccionCliente(rs.getString("Direccion_Cliente"));
                 clientes.add(cliente);
             }
-        } catch (SQLException e) {
-            System.err.println("Error al consultar clientes: " + e.getMessage());
         }
         return clientes;
     }
-
-
-
 
 }
