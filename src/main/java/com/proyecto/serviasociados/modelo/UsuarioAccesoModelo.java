@@ -1,11 +1,11 @@
 package com.proyecto.serviasociados.modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.CallableStatement;
 import com.proyecto.serviasociados.services.ConexionBDD;
-import javafx.scene.control.Alert;
 
 public class UsuarioAccesoModelo {
 
@@ -14,10 +14,6 @@ public class UsuarioAccesoModelo {
     private String contrasena;
     private String rol;
     private String estado;
-    final private static Alert confirmationAlert = new Alert(Alert.AlertType.INFORMATION);
-    final private static Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-
-
 
     public UsuarioAccesoModelo() {
     }
@@ -29,7 +25,6 @@ public class UsuarioAccesoModelo {
         this.rol = rol;
         this.estado = estado;
     }
-
 
     public int getIdUsuario() {
         return idUsuario;
@@ -72,166 +67,102 @@ public class UsuarioAccesoModelo {
     }
 
 
-    //Metodo para Crear un usuario
-
-    public void crearUsuario(int idUsuario, String usuario, String contrasena, String rol, String estado) {
-    String verificarSQL = "SELECT COUNT(*) FROM Usuarios WHERE Usuario = ?";
-    String insertarSQL = "INSERT INTO Usuarios (Usuario_Id, Usuario, contrasena, Rol, Estado) VALUES (?, ?, ?, ?, ?)";
-
-    try {
-        Connection connection = ConexionBDD.getConnection();
-        
-        PreparedStatement verificarStmt = connection.prepareStatement(verificarSQL);
-        verificarStmt.setString(1, usuario);
-        ResultSet resultSet = verificarStmt.executeQuery();
-        resultSet.next();
-        int existe = resultSet.getInt(1);
-        resultSet.close();
-        verificarStmt.close();
-
-        if (existe > 0) {
-            errorAlert.setTitle("Error");
-            errorAlert.setContentText("El usuario ya existe. Por favor, eliga otro.");
-            errorAlert.show();
-            return;
+    // Metodo para Crear un usuario con procedimiento almacenado
+    public boolean crearUsuario() throws SQLException {
+        String sql = "{CALL sp_insertar_usuario(?, ?, ?, ?, ?)}";
+        try (Connection con = ConexionBDD.getConnection();
+                CallableStatement cs = con.prepareCall(sql)) {
+            cs.setInt(1, idUsuario);
+            cs.setString(2, usuario);
+            cs.setString(3, contrasena);
+            cs.setString(4, rol);
+            cs.setString(5, estado);
+            cs.execute();
+            return true;
         }
 
-    
-        PreparedStatement insertarStmt = connection.prepareStatement(insertarSQL);
-        insertarStmt.setInt(1, idUsuario);
-        insertarStmt.setString(2, usuario);
-        insertarStmt.setString(3, contrasena);
-        insertarStmt.setString(4, rol);
-        insertarStmt.setString(5, estado);
-        insertarStmt.executeUpdate();
-        insertarStmt.close();
-
-        confirmationAlert.setTitle("Éxito");
-        confirmationAlert.setContentText("Usuario creado correctamente.");
-        confirmationAlert.show();
-
-    } catch (Exception e) {
-        errorAlert.setTitle("Error");
-        errorAlert.setContentText("No fue posible crear el usuario.");
-        errorAlert.show();
-        e.printStackTrace();
     }
-}
 
+    // Metodo para buscar usuario por id con procedimiento almacenado
+    public UsuarioAccesoModelo buscarUsuario(int idUsuario) throws SQLException {
+        UsuarioAccesoModelo usuario = null;
+        String sql = "{CALL sp_buscar_usuario(?)}";
+        try (Connection con = ConexionBDD.getConnection();
+                CallableStatement cs = con.prepareCall(sql)) {
+            cs.setInt(1, idUsuario);
+            try (ResultSet rs = cs.executeQuery()) {
+                if (rs.next()) {
+                    usuario = new UsuarioAccesoModelo();
+                    usuario.setIdUsuario(rs.getInt("Usuario_Id"));
+                    usuario.setUsuario(rs.getString("Usuario"));
+                    usuario.setContrasena(rs.getString("Contrasena"));
+                    usuario.setRol(rs.getString("Rol"));
+                    usuario.setEstado(rs.getString("Estado"));
+                }
+            }
+        }
+        return usuario;
+    }
 
-    public ArrayList <UsuarioAccesoModelo> obtenerUsuarios() {
-        String sql = "SELECT * FROM Usuarios";
+    // Metodo para actualizar usuario con procedimiento almacenado
+    public boolean actualizarUsuario() throws SQLException {
+        String sql = "{CALL sp_actualizar_usuario(?, ?, ?, ?, ?)}";
+        try (Connection con = ConexionBDD.getConnection();
+                CallableStatement cs = con.prepareCall(sql)) {
+            cs.setInt(1, idUsuario);
+            cs.setString(2, usuario);
+            cs.setString(3, contrasena);
+            cs.setString(4, rol);
+            cs.setString(5, estado);
+            cs.execute();
+            return true;
+        }
+    }
+
+    // Metodo para obtener todos los usuarios con procedimiento almacenado
+    public ArrayList<UsuarioAccesoModelo> obtenerUsuarios() throws SQLException {
         ArrayList<UsuarioAccesoModelo> usuarios = new ArrayList<>();
-
-        try {
-            Connection connection = ConexionBDD.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet resultSet = ps.executeQuery();
-
-            while (resultSet.next()) {
+        String sql = "{CALL sp_consultar_usuarios()}";
+        try (Connection con = ConexionBDD.getConnection();
+                CallableStatement cs = con.prepareCall(sql);
+                ResultSet rs = cs.executeQuery()) {
+            while (rs.next()) {
                 UsuarioAccesoModelo usuario = new UsuarioAccesoModelo();
-                usuario.setIdUsuario(resultSet.getInt("Usuario_Id"));
-                usuario.setUsuario(resultSet.getString("Usuario"));
-                usuario.setContrasena(resultSet.getString("Contrasena"));
-                usuario.setRol(resultSet.getString("Rol"));
-                usuario.setEstado(resultSet.getString("Estado"));
+                usuario.setIdUsuario(rs.getInt("Usuario_Id"));
+                usuario.setUsuario(rs.getString("Usuario"));
+                usuario.setContrasena(rs.getString("Contrasena"));
+                usuario.setRol(rs.getString("Rol"));
+                usuario.setEstado(rs.getString("Estado"));
                 usuarios.add(usuario);
             }
-        } catch (Exception e) {
-            errorAlert.setTitle("Error");
-            errorAlert.setContentText("No fue posible obtener los Usuarios.");
-            errorAlert.show();
         }
-
         return usuarios;
     }
 
-    
-    public void actualizarUsuario(int idUsuario, String contrasena, String rol, String estado) {
-        String sql = "UPDATE Usuarios SET Contrasena = ?, Rol = ?, Estado = ? WHERE Usuario_Id = ?";
+    // Metodo para validar usuario con procedimiento almacenado
+    public String validarUsuario(String usuario, String contrasena) throws SQLException {
+        String sql = "{CALL sp_validar_usuario(?, ?)}";
+        try (Connection connection = ConexionBDD.getConnection();
+                CallableStatement cs = connection.prepareCall(sql)) {
 
-        try {
-            Connection connection = ConexionBDD.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
+            cs.setString(1, usuario);
+            cs.setString(2, contrasena);
 
-            ps.setString(1, contrasena);
-            ps.setString(2, rol);
-            ps.setString(3, estado);
-            ps.setInt(4, idUsuario);
+            try (ResultSet resultSet = cs.executeQuery()) {
+                if (resultSet.next()) {
+                    String rol = resultSet.getString("Rol");
+                    String estado = resultSet.getString("Estado");
 
-            ps.executeUpdate();
-
-            confirmationAlert.setTitle("Éxito");
-            confirmationAlert.setContentText("Usuario actualizado correctamente.");
-            confirmationAlert.show();
-        } catch (Exception e) {
-            errorAlert.setTitle("Error");
-            errorAlert.setContentText("No fue posible actualizar el usuario.");
-            errorAlert.show();
-        }
-    }
-
-    // Buscar usuario por nombre de id
-    public UsuarioAccesoModelo buscarUsuarioPorId(int idUsuario) {
-        String sql = "SELECT * FROM Usuarios WHERE Usuario_Id = ?";
-        UsuarioAccesoModelo usuario = null;
-
-        try {
-            Connection connection = ConexionBDD.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, idUsuario);
-            ResultSet resultSet = ps.executeQuery();
-
-            if (resultSet.next()) {
-                usuario = new UsuarioAccesoModelo();
-                usuario.setIdUsuario(resultSet.getInt("Usuario_Id"));
-                usuario.setUsuario(resultSet.getString("Usuario"));
-                usuario.setContrasena(resultSet.getString("Contrasena"));
-                usuario.setRol(resultSet.getString("Rol"));
-                usuario.setEstado(resultSet.getString("Estado"));
-            }
-        } catch (Exception e) {
-            errorAlert.setTitle("Error");
-            errorAlert.setContentText("No fue posible buscar el usuario.");
-            errorAlert.show();
-        }
-
-        return usuario;
-    }
-    
-
-    public String validarUsuario(String usuario, String contrasena) {
-        String sql = "SELECT rol, estado FROM Usuarios WHERE usuario = ? AND contrasena = ?";
-
-        try {
-            Connection connection = ConexionBDD.getConnection();
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, usuario);
-            ps.setString(2, contrasena);
-
-            ResultSet resultSet = ps.executeQuery(); //
-
-            if (resultSet.next()) {
-                String rol = resultSet.getString("rol");
-                String estado = resultSet.getString("estado");
-
-                if (estado.equalsIgnoreCase("Activo")) {
-                    return rol; // Devuelve el rol si está activo
+                    if (estado.equalsIgnoreCase("Activo")) {
+                        return rol;
+                    } else {
+                        return "INACTIVO";
+                    }
                 } else {
-                    return "Inactivo";
+                    return "NO_EXISTE";
                 }
-            } else {
-                return "NoExiste";
             }
-
-        } catch (Exception e) {
-            System.out.println("Error al validar usuario: " + e.getMessage());
-            return "Error";
         }
     }
-
-    
-
-
 
 }

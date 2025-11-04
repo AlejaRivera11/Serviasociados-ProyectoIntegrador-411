@@ -1,5 +1,15 @@
 package com.proyecto.serviasociados.modelo;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.proyecto.serviasociados.services.ConexionBDD;
+
+
 public class ServicioModelo {
     
     private int servicioId;
@@ -17,24 +27,40 @@ public class ServicioModelo {
         this.tiempo = tiempo;
     }
 
-    //getters y setters
 
     public int getServicioId() {
         return servicioId;
     }
-    public void setServicioId(int servicioId) {
-        this.servicioId = servicioId;
-    }
+
     public String getNomServicio() {
         return nomServicio;
     }
-    public void setNomServicio(String nomServicio) {
-        this.nomServicio = nomServicio;
-    }
+   
     public String getTiempo() {
         return tiempo;
     }
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
+
+    // Sirve para mostrar el nombre del servicio en el JComboBox.
+    @Override
+    public String toString() {
+        return nomServicio;
+    }
+
+    public static List<ServicioModelo> obtenerServicios() throws SQLException {
+        List<ServicioModelo> servicios = new ArrayList<>();
+        String sql = "{Call sp_listar_servicios()}";
+
+        try (Connection con = ConexionBDD.getConnection();
+             CallableStatement stmt = con.prepareCall(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int servicioId = rs.getInt("servicio_id");
+                String nomServicio = rs.getString("nom_servicio");
+                String tiempo = rs.getString("tiempo");
+                servicios.add(new ServicioModelo(servicioId, nomServicio, tiempo));
+            }
+        } 
+        return servicios;
     }
 }

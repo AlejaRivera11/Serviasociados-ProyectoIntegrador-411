@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.ClienteAdministradorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="930.0" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.ClienteAdministradorController">
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
@@ -26,19 +26,19 @@
                   <HBox prefHeight="56.0" prefWidth="920.0">
                      <children>
                         <AnchorPane prefHeight="45.0" prefWidth="62.0" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="920.0" spacing="30.0" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="920.0" spacing="20.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#insertarCliente" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#insertarCliente" prefHeight="38.0" prefWidth="125.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#buscarCliente" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#buscarCliente" prefHeight="38.0" prefWidth="103.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#actualizarCliente" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Actualizar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#actualizarCliente" prefHeight="38.0" prefWidth="125.0" style="-fx-background-color: #003a69;" text="Actualizar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -68,22 +68,22 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="43.0" prefWidth="920.0" spacing="30.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="73.0" text="Documento">
+                        <Label contentDisplay="CENTER" prefHeight="18.0" prefWidth="84.0" text="Documento">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <TextField fx:id="txtDocumento" prefHeight="25.0" prefWidth="197.0" />
-                        <Label prefHeight="17.0" prefWidth="59.0" text="Nombre">
+                        <TextField fx:id="txtDocumento" prefHeight="25.0" prefWidth="197.0" styleClass="text-field-cliente" stylesheets="@../estilos.css" />
+                        <Label prefHeight="18.0" prefWidth="84.0" text="Nombre">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="207.0" />
-                        <Label prefHeight="17.0" prefWidth="73.0" text="Telefono">
+                        <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="207.0" styleClass="text-field-cliente" stylesheets="@../estilos.css" />
+                        <Label prefHeight="18.0" prefWidth="84.0" text="Telefono">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="130.0" />
+                        <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="130.0" styleClass="text-field-cliente" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
@@ -96,16 +96,15 @@
                      <VBox.margin>
                         <Insets left="15.0" right="14.0" />
                      </VBox.margin></Separator>
-                  <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="NEVER">
+                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="NEVER">
                      <children>
-                        <Label text="Correo">
+                        <Label prefHeight="18.0" prefWidth="84.0" text="Correo">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="25.0" prefWidth="1.0" />
-                        <TextField fx:id="txtCorreo" prefHeight="25.0" prefWidth="189.0" />
-                        <Label prefWidth="59.0" text="Dirección">
+                        <TextField fx:id="txtCorreo" prefHeight="25.0" prefWidth="189.0" styleClass="text-field-cliente" />
+                        <Label prefHeight="18.0" prefWidth="84.0" text="Dirección">
                            <padding>
                               <Insets top="1.0" />
                            </padding>
@@ -113,10 +112,11 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtDireccion" prefHeight="25.0" prefWidth="218.0" />
+                        <TextField fx:id="txtDireccion" prefHeight="25.0" prefWidth="218.0" styleClass="text-field-cliente" />
+                        <Pane prefHeight="31.0" prefWidth="267.0" />
                      </children>
                      <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+                        <Insets bottom="15.0" left="20.0" right="15.0" top="10.0" />
                      </padding>
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
@@ -148,7 +148,7 @@
    <top>
       <HBox prefHeight="45.0" prefWidth="923.0" style="-fx-background-color: #003a69;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="32.0" prefWidth="154.0" text="Serviasosidos - Clientes" textFill="WHITE">
+            <Label prefHeight="24.0" prefWidth="236.0" styleClass="header-label" text="Serviasociados - Clientes" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -156,15 +156,18 @@
                   <Insets left="15.0" top="15.0" />
                </padding>
             </Label>
-            <ImageView fitHeight="35.0" fitWidth="87.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="64.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/Clientes.png" />
                </image>
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets bottom="5.0" />
                </HBox.margin>
             </ImageView>
          </children>
+         <padding>
+            <Insets left="15.0" top="10.0" />
+         </padding>
       </HBox>
    </top>
 </BorderPane>
