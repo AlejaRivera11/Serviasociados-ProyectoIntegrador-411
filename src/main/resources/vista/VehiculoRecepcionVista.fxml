@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.VehiculoRecepcionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="930.0" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.VehiculoRecepcionController">
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
@@ -24,14 +24,14 @@
                <children>
                   <HBox prefHeight="56.0" prefWidth="920.0">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="920.0" spacing="30.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="920.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#insertarVehiculo" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#insertarVehiculo" prefHeight="38.0" prefWidth="116.0" style="-fx-background-color: #003a69;" text="Registrar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#buscarVehiculo" prefHeight="27.0" prefWidth="82.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
+                              <Button mnemonicParsing="false" onAction="#buscarVehiculo" prefHeight="38.0" prefWidth="97.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -58,22 +58,22 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="920.0" spacing="30.0">
                      <children>
-                        <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="63.0" text="Placa">
+                        <Label contentDisplay="CENTER" prefHeight="18.0" prefWidth="67.0" text="Placa">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <TextField fx:id="txtPlaca" prefHeight="25.0" prefWidth="147.0" />
+                        <TextField fx:id="txtPlaca" prefHeight="25.0" prefWidth="147.0" styleClass="text-field-cliente" />
                         <Label prefHeight="17.0" prefWidth="69.0" text="Marca">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
-                        <TextField fx:id="txtMarca" prefHeight="25.0" prefWidth="184.0" />
+                        <TextField fx:id="txtMarca" prefHeight="25.0" prefWidth="184.0" styleClass="text-field-cliente" />
                         <Label prefHeight="17.0" prefWidth="69.0" text="Modelo">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtModelo" prefHeight="25.0" prefWidth="151.0" />
+                        <TextField fx:id="txtModelo" prefHeight="25.0" prefWidth="151.0" styleClass="text-field-cliente" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
@@ -88,12 +88,12 @@
                      </VBox.margin></Separator>
                   <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <Label prefHeight="17.0" prefWidth="45.0" text="Color">
+                        <Label prefHeight="18.0" prefWidth="41.0" text="Color">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Label>
                         <Pane prefHeight="25.0" prefWidth="1.0" />
-                        <TextField fx:id="txtColor" prefHeight="25.0" prefWidth="155.0" />
+                        <TextField fx:id="txtColor" prefHeight="31.0" prefWidth="162.0" styleClass="text-field-cliente" />
                         <Label prefHeight="18.0" prefWidth="84.0" text="Kilometraje">
                            <padding>
                               <Insets top="1.0" />
@@ -102,7 +102,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtKilometraje" prefHeight="25.0" prefWidth="195.0" />
+                        <TextField fx:id="txtKilometraje" prefHeight="25.0" prefWidth="195.0" styleClass="text-field-cliente" />
                         <Label prefHeight="18.0" prefWidth="131.0" text="Documento Cliente">
                            <padding>
                               <Insets top="1.0" />
@@ -111,7 +111,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtDocumento" prefHeight="25.0" prefWidth="165.0" />
+                        <TextField fx:id="txtDocumento" prefHeight="25.0" prefWidth="165.0" styleClass="text-field-cliente" />
                      </children>
                      <padding>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
@@ -147,7 +147,7 @@
    <top>
       <HBox prefHeight="45.0" prefWidth="923.0" style="-fx-background-color: #003a69;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="32.0" prefWidth="162.0" text="Serviasosiados - Vehículo" textFill="WHITE">
+            <Label prefHeight="24.0" prefWidth="249.0" styleClass="header-label" text="Serviasosiados - Vehículo" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -160,10 +160,13 @@
                   <Image url="@../imagenes/Carro.png" />
                </image>
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets />
                </HBox.margin>
             </ImageView>
          </children>
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
       </HBox>
    </top>
 </BorderPane>

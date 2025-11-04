@@ -85,8 +85,12 @@ public class MenuAdministradorController {
         stageEst.show();
     }
 
-    @FXML void abrirAgendaCita(ActionEvent event) {
-
+    @FXML void abrirAgendaCita(ActionEvent event) throws IOException {
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/CitaVista.fxml"));
+        Stage stageEst = new Stage();
+        stageEst.setScene(new Scene(loaderEst.load()));
+        stageEst.setTitle("Historial Citas");
+        stageEst.show();
     }
 
     @FXML void abrirCitasProgramas(ActionEvent event) throws IOException {

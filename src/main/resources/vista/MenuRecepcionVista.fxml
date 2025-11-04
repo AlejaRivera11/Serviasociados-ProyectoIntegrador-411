@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="470.0" prefWidth="923.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.MenuRecepcionController">
+<BorderPane prefHeight="470.0" prefWidth="923.0" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.MenuRecepcionController">
    <center>
       <HBox alignment="CENTER" prefHeight="425.0" prefWidth="1096.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <children>
@@ -19,13 +19,16 @@
                <image>
                   <Image url="@../imagenes/Logo.jpeg" />
                </image>
+               <HBox.margin>
+                  <Insets left="20.0" right="15.0" />
+               </HBox.margin>
             </ImageView>
             <HBox alignment="CENTER" style="-fx-background-color: #8fabc3;" HBox.hgrow="ALWAYS">
                <children>
                   <Pane minWidth="70.0" prefHeight="425.0" prefWidth="70.0" HBox.hgrow="ALWAYS" />
                   <VBox alignment="CENTER" prefHeight="425.0" prefWidth="297.0" spacing="15.0">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirClientes" prefHeight="44.0" prefWidth="290.0" style="-fx-background-color: #003a69;" text="Clientes" textFill="WHITE" wrapText="true">
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirClientes" prefHeight="50.0" prefWidth="285.0" style="-fx-background-color: #003a69;" text="Clientes" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -93,13 +96,13 @@
    <top>
       <HBox alignment="CENTER" maxHeight="45.0" minHeight="45.0" prefHeight="45.0" style="-fx-background-color: #003369;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="295.0" text="Serviasociados - Panel de Recepción" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="24.0" prefWidth="356.0" styleClass="header-label" text="Serviasociados - Panel de Recepción" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Pane HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #FFFFFF;" text="Cerrar sesión" textFill="#003a69">
+            <Button mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="34.0" prefWidth="135.0" style="-fx-background-color: #FFFFFF;" styleClass="logout-button" text="Cerrar sesión" textFill="#003a69">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
