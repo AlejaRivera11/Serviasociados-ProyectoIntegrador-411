@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.HistorialCitasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="930.0" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.HistorialCitasController">
    <top>
       <HBox prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #003a69;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="32.0" prefWidth="210.0" text="Serviasosiados - Historial de Citas" textFill="WHITE">
+            <Label prefHeight="24.0" prefWidth="324.0" styleClass="header-label" text="Serviasosiados - Historial de Citas" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -34,10 +34,13 @@
                   <Image url="@../imagenes/Historial%20(2).png" />
                </image>
                <HBox.margin>
-                  <Insets top="5.0" />
+                  <Insets bottom="5.0" />
                </HBox.margin>
             </ImageView>
          </children>
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
       </HBox>
    </top>
    <center>
@@ -47,8 +50,8 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="60.0" prefWidth="930.0" spacing="30.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <TextField prefHeight="27.0" prefWidth="100.0" />
-                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
+                        <TextField prefHeight="27.0" prefWidth="100.0" styleClass="text-field-cliente" />
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="113.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
