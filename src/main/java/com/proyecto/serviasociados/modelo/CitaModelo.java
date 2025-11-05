@@ -186,5 +186,27 @@ public class CitaModelo {
         return lista;
     }
 
+    // Método para actualizar el estado de una cita y registrar fechas según corresponda
+    public boolean actualizarEstadoCita(String nuevoEstado) {
+        String sql = "{CALL sp_actualizar_estado_cita(?, ?)}";
+        try (Connection con = ConexionBDD.getConnection();
+        CallableStatement cs = (CallableStatement) con.prepareCall(sql)) {
+
+        // Parámetros de entrada del procedimiento almacenado
+        cs.setInt(1, citaId);        // p_cita_id
+        cs.setString(2, nuevoEstado); // p_nuevo_estado
+
+        // Ejecutar el procedimiento
+        cs.execute();
+
+        return true;
+         } catch (SQLException e) {
+         System.err.println("Error al actualizar estado de la cita: " + e.getMessage());
+         return false;
+         }
+    }
+
+    
+
 
 } 
