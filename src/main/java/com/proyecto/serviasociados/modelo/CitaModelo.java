@@ -105,9 +105,11 @@ public class CitaModelo {
     public void setUsuarioId(int usuarioId) {
         this.usuarioId = usuarioId;
     }   
+
     public String getNombreEstado() { 
         return nombreEstado; 
     }
+
     public void setNombreEstado(String nombreEstado) {
         this.nombreEstado = nombreEstado; 
     }
@@ -122,26 +124,33 @@ public class CitaModelo {
 
     //otros métodos
 
-    // Método para registrar una nueva cita
-    public boolean agendarCitaCompleta(Date fecha, Time hora, int clienteId, int vehiculoId, int servicioId) {
-        String sql = "{CALL sp_agendar_cita_completa(?, ?, ?, ?, ?)}";
+    // Método para agendar cita usando el SP sp_agendar_cita
+    public boolean agendarCita(LocalDate fechaCita, LocalTime horaCita, String placa, int usuarioId, int mecanicoId, int servicioId) {
+        String sql = "{CALL sp_agendar_cita(?, ?, ?, ?, ?, ?)}";
+
         try (Connection con = ConexionBDD.getConnection();
-             CallableStatement cs = (CallableStatement) con.prepareCall(sql)) {
+            CallableStatement cs = con.prepareCall(sql)) {
 
-        // Parámetros de entrada del procedimiento almacenado
-             cs.setDate(1, fecha);          // p_Fecha
-             cs.setTime(2, hora);           // p_Hora
-             cs.setInt(3, clienteId);       // p_Cliente_Id
-             cs.setInt(4, vehiculoId);      // p_Vehiculo_Id
-             cs.setInt(5, servicioId);      // p_Servicio_Id
+                cs.setDate(1, java.sql.Date.valueOf(fechaCita)); 
+                cs.setTime(2, java.sql.Time.valueOf(horaCita));
+                cs.setString(3, placa);
+                cs.setInt(4, usuarioId);
+                cs.setInt(5, mecanicoId);
+                cs.setInt(6, servicioId);
 
-        // Ejecutar el procedimiento
-             cs.execute();
+                cs.execute();
+            return true;
 
-             return true; // Éxito
         } catch (SQLException e) {
-             System.err.println("Error al agendar cita completa: " + e.getMessage());
-             return false; // Fallo
+
+        // Verifica si el error es el que envía el SIGNAL del SP
+        if (e.getMessage().contains("mecánico")) {
+            System.err.println("⚠️ No se puede agendar la cita: El mecánico está ocupado en ese horario.");
+        } else {
+            System.err.println("Error al agendar la cita: " + e.getMessage());
+        }
+
+        return false;
         }
     }
 
