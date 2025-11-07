@@ -74,6 +74,9 @@ public class MenuAdministradorController {
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("Mecanicos");
         stageEst.show();
+
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML
@@ -83,6 +86,9 @@ public class MenuAdministradorController {
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("Historial Citas");
         stageEst.show();
+
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML void abrirAgendaCita(ActionEvent event) throws IOException {
@@ -91,6 +97,10 @@ public class MenuAdministradorController {
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("Historial Citas");
         stageEst.show();
+
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
     }
 
     @FXML void abrirCitasProgramas(ActionEvent event) throws IOException {
@@ -99,6 +109,9 @@ public class MenuAdministradorController {
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("Citas programadas");
         stageEst.show();
+
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
 

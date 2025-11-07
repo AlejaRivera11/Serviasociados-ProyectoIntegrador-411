@@ -133,3 +133,54 @@
     -fx-background-color: #cce0ff;
     -fx-translate-y: 1;
 }
+
+
+.logo-container {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #e6f0fa);
+    -fx-background-radius: 20;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0.4, 0, 3);
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #d0d7de;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 5;
+    -fx-table-cell-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);
+}
+
+/* Encabezado de columnas */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to right, #003366, #0059b3);
+    -fx-background-radius: 10 10 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #003a69;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: center;
+}
+
+/* Filas */
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f5f8fa;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #e1f0ff;
+}
+
+
+/* Bordes internos */
+.table-view .filler {
+    -fx-background-color: #003366;
+}
