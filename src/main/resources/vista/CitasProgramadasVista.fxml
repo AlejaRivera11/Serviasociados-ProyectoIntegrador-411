@@ -56,22 +56,22 @@
                   <HBox alignment="CENTER" prefHeight="60.0" prefWidth="930.0" spacing="30.0">
                      <children>
                         <TextField prefHeight="28.0" prefWidth="100.0" promptText="Ingrese la Placa" styleClass="text-field-cliente" />
-                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#buscarCitaProgramada" prefHeight="38.0" prefWidth="106.0" style="-fx-background-color: #003a69;" text="Buscar" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Button>
-                        <ComboBox prefHeight="25.0" prefWidth="150.0" promptText="Estado" styleClass="text-field-cliente" />
-                        <Button mnemonicParsing="false" text="Actualizar" />
+                        <ComboBox fx:id="cmbEstados" prefHeight="25.0" prefWidth="150.0" promptText="Estado" styleClass="text-field-cliente" />
+                        <Button mnemonicParsing="false" onAction="#actualizarEstado" text="Actualizar" />
                         <Pane prefHeight="60.0" prefWidth="106.0" />
-                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Inicio" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#volverMenuPrincipal" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #003a69;" text="Inicio" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <TableView prefHeight="345.0" prefWidth="900.0">
+                  <TableView fx:id="tblCita" prefHeight="345.0" prefWidth="900.0">
                     <columns>
                       <TableColumn prefWidth="50.0" text="#" />
                       <TableColumn prefWidth="60.0" text="Usuario" />
