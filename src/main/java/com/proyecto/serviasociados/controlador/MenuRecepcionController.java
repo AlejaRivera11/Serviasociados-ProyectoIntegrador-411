@@ -19,6 +19,9 @@ public class MenuRecepcionController {
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("Historial Citas");
         stageEst.show();
+
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML
@@ -29,6 +32,8 @@ public class MenuRecepcionController {
         stageEst.setTitle("Citas programadas");
         stageEst.show();
 
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML

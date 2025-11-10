@@ -15,6 +15,10 @@ public class UsuarioAccesoModelo {
     private String rol;
     private String estado;
 
+    private static int idUsuarioActivo = 0;
+    private static String usuarioActivo = null;
+    private static String rolActivo = null;
+
     public UsuarioAccesoModelo() {
     }
 
@@ -66,8 +70,25 @@ public class UsuarioAccesoModelo {
         this.estado = estado;
     }
 
+    public static void iniciarSesion(int id, String usuario, String rol) {
+        idUsuarioActivo = id;
+        usuarioActivo = usuario;
+        rolActivo = rol;
+    }
 
-    // Metodo para Crear un usuario con procedimiento almacenado
+    public static int getIdUsuarioActivo() {
+        return idUsuarioActivo;
+    }
+
+    public static String getUsuarioActivo() {
+        return usuarioActivo;
+    }
+
+    public static String getRolActivo() {
+        return rolActivo;
+    }
+
+    // Metodo para crear un nuevo usuario
     public boolean crearUsuario() throws SQLException {
         String sql = "{CALL sp_insertar_usuario(?, ?, ?, ?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
@@ -80,10 +101,9 @@ public class UsuarioAccesoModelo {
             cs.execute();
             return true;
         }
-
     }
 
-    // Metodo para buscar usuario por id con procedimiento almacenado
+    // Metodo para buscar un usuario por ID
     public UsuarioAccesoModelo buscarUsuario(int idUsuario) throws SQLException {
         UsuarioAccesoModelo usuario = null;
         String sql = "{CALL sp_buscar_usuario(?)}";
@@ -104,7 +124,7 @@ public class UsuarioAccesoModelo {
         return usuario;
     }
 
-    // Metodo para actualizar usuario con procedimiento almacenado
+    // Metodo para actualizar un usuario existente
     public boolean actualizarUsuario() throws SQLException {
         String sql = "{CALL sp_actualizar_usuario(?, ?, ?, ?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
@@ -119,7 +139,7 @@ public class UsuarioAccesoModelo {
         }
     }
 
-    // Metodo para obtener todos los usuarios con procedimiento almacenado
+    // Metodo para obtener todos los usuarios
     public ArrayList<UsuarioAccesoModelo> obtenerUsuarios() throws SQLException {
         ArrayList<UsuarioAccesoModelo> usuarios = new ArrayList<>();
         String sql = "{CALL sp_consultar_usuarios()}";
@@ -139,30 +159,35 @@ public class UsuarioAccesoModelo {
         return usuarios;
     }
 
-    // Metodo para validar usuario con procedimiento almacenado
-    public String validarUsuario(String usuario, String contrasena) throws SQLException {
+    // Metodo para validar usuario y contrasena
+    public UsuarioAccesoModelo validarUsuario(String usuario, String contrasena) throws SQLException {
         String sql = "{CALL sp_validar_usuario(?, ?)}";
         try (Connection connection = ConexionBDD.getConnection();
-                CallableStatement cs = connection.prepareCall(sql)) {
+             CallableStatement cs = connection.prepareCall(sql)) {
 
             cs.setString(1, usuario);
             cs.setString(2, contrasena);
 
             try (ResultSet resultSet = cs.executeQuery()) {
                 if (resultSet.next()) {
-                    String rol = resultSet.getString("Rol");
                     String estado = resultSet.getString("Estado");
+                    // Verificar si el usuario está activo
+                    UsuarioAccesoModelo usuarioLogueado = new UsuarioAccesoModelo();
+                    usuarioLogueado.setIdUsuario(resultSet.getInt("Usuario_Id"));
+                    usuarioLogueado.setUsuario(resultSet.getString("Usuario"));
+                    usuarioLogueado.setRol(resultSet.getString("Rol"));
+                    usuarioLogueado.setEstado(estado);
 
                     if (estado.equalsIgnoreCase("Activo")) {
-                        return rol;
+                        return usuarioLogueado;
                     } else {
-                        return "INACTIVO";
+                        return new UsuarioAccesoModelo(0, null, null, null, "INACTIVO");
                     }
                 } else {
-                    return "NO_EXISTE";
+                    // No se encontró un usuario válido
+                    return null;
                 }
             }
         }
     }
-
 }

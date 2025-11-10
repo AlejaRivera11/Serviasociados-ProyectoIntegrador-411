@@ -32,7 +32,7 @@ public class EstadoModelo {
         return nombreEstado;
     }
 
-    // Sirve para mostrar el nombre del estado en el JComboBox.
+    //Funcion: Para mostrar el nombre del estado en el JComboBox.
     @Override
     public String toString() {
         return nombreEstado;
@@ -47,8 +47,8 @@ public class EstadoModelo {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                int idEstado = rs.getInt("id_estado");
-                String nombreEstado = rs.getString("nombre_estado");
+                int idEstado = rs.getInt("Estado_Id");
+                String nombreEstado = rs.getString("Nombre_Estado");
                 estados.add(new EstadoModelo(idEstado, nombreEstado));
             }
         } 

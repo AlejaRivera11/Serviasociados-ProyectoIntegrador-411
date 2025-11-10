@@ -9,14 +9,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.sql.SQLException; // ¡Necesario para manejar errores del Modelo!
+import java.sql.SQLException;
 
 public class LoginController {
 
-    @FXML private TextField txtUsuario;
-    @FXML private TextField txtContrasena;
+    @FXML
+    private TextField txtUsuario;
+    @FXML
+    private TextField txtContrasena;
 
     final private static Alert warningAlert = new Alert(Alert.AlertType.WARNING);
     final private static Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -26,7 +27,6 @@ public class LoginController {
         String usuario = txtUsuario.getText();
         String contrasena = txtContrasena.getText();
 
-        //Validación de campos vacíos
         if (usuario.isEmpty() || contrasena.isEmpty()) {
             warningAlert.setTitle("Advertencia");
             warningAlert.setContentText("Por favor, ingrese el usuario y la contraseña.");
@@ -35,38 +35,45 @@ public class LoginController {
         }
 
         try {
-            //Llamada al Modelo que puede lanzar SQLException
             UsuarioAccesoModelo modelo = AppServices.getUsuarioAccesoModelo();
-            String resultado = modelo.validarUsuario(usuario, contrasena);
+            UsuarioAccesoModelo usuarioLogueado = modelo.validarUsuario(usuario, contrasena);
 
-            //Manejo de resultados
-            switch (resultado) {
-                case "ADMINISTRADOR":
-                    abrirVentana("/vista/MenuAdministradorVista.fxml", "Menú Administrador");
-                    break;
-                case "RECEPCION":
-                    abrirVentana("/vista/MenuRecepcionVista.fxml", "Menú Recepción");
-                    break;
-                case "INACTIVO":
-                    errorAlert.setTitle("Acceso Denegado");
-                    errorAlert.setContentText("El usuario no está activo en el sistema. Contacte al administrador.");
-                    errorAlert.show();
-                    break;
-                case "NO_EXISTE":
-                    errorAlert.setTitle("Acceso Denegado");
-                    errorAlert.setContentText("Usuario o contraseña incorrectos.");
-                    errorAlert.show();
-                    break;
-                default:
-                    errorAlert.setTitle("Error Desconocido");
-                    errorAlert.setContentText("Ocurrió un error inesperado durante la validación.");
-                    errorAlert.show();
-                    break;
+            if (usuarioLogueado == null) {
+                errorAlert.setTitle("Acceso Denegado");
+                errorAlert.setContentText("Usuario o contraseña incorrectos.");
+                errorAlert.show();
+            } else if (usuarioLogueado.getEstado().equalsIgnoreCase("INACTIVO")) {
+                errorAlert.setTitle("Acceso Denegado");
+                errorAlert.setContentText("El usuario no está activo en el sistema. Contacte al administrador.");
+                errorAlert.show();
+            } else {
+                UsuarioAccesoModelo.iniciarSesion(
+                        usuarioLogueado.getIdUsuario(),
+                        usuarioLogueado.getUsuario(),
+                        usuarioLogueado.getRol() 
+                );
+                String rol = usuarioLogueado.getRol();
+                switch (rol) {
+                    case "ADMINISTRADOR":
+                        abrirVentana("/vista/MenuAdministradorVista.fxml", "Menú Administrador");
+                        break;
+                    case "RECEPCION":
+                        abrirVentana("/vista/MenuRecepcionVista.fxml", "Menú Recepción");
+                        break;
+                    default:
+                        errorAlert.setTitle("Error de Rol");
+                        errorAlert.setContentText("Rol de usuario no reconocido.");
+                        errorAlert.show();
+                        break;
+                }
             }
         } catch (SQLException e) {
-            // Manejo de error de base de datos/conexión
             errorAlert.setTitle("Error de Conexión");
-            errorAlert.setContentText("Fallo al conectar con la base de datos o error de servidor: " + e.getMessage());
+            errorAlert.setContentText("Fallo al conectar con la base de datos: " + e.getMessage());
+            errorAlert.show();
+        } catch (Exception e) {
+            errorAlert.setTitle("Error Desconocido");
+            errorAlert.setContentText("Ocurrió un error inesperado: " + e.getMessage());
             errorAlert.show();
         }
     }
@@ -78,7 +85,6 @@ public class LoginController {
             stage.setScene(new Scene(loader.load()));
             stage.setTitle(tituloVentana);
             stage.show();
-
 
             Stage currentStage = (Stage) txtUsuario.getScene().getWindow();
             currentStage.close();

@@ -48,11 +48,11 @@ public class UsuarioAccesoController {
     void crearUsuario(ActionEvent event) {
 
         if (txtId.getText().isEmpty() || txtUsuario.getText().isEmpty() ||
-                txtContrasena.getText().isEmpty() || cmbRol.getValue() == null ||
-                cmbEstado.getValue() == null) {
+            txtContrasena.getText().isEmpty() || cmbRol.getValue() == null ||
+            cmbEstado.getValue() == null) {
 
             warningAlert.setTitle("Información Incompleta");
-            warningAlert.setContentText("Complete todos los campos, incluyendo la selección de Rol y Estado.");
+            warningAlert.setContentText("Complete todos los campos, para la creación del usuario.");
             warningAlert.show();
             return;
         }
@@ -83,7 +83,7 @@ public class UsuarioAccesoController {
             if (e.getErrorCode() == 1062) {
                 errorAlert.setContentText("El ID o Nombre de Usuario ya está registrado.");
             } else {
-                errorAlert.setContentText("Error al crear el usuario: " + e.getMessage());
+                errorAlert.setContentText("Error al crear usuario: " + e.getMessage());
             }
             errorAlert.show();
         }
@@ -93,17 +93,15 @@ public class UsuarioAccesoController {
     public void actualizarUsuario(ActionEvent event) {
 
         if (txtId.getText().isEmpty()) {
-            warningAlert.setContentText("Ingrese un ID de usuario para actualizar.");
+            warningAlert.setContentText("Ingrese el ID de usuario para actualizar.");
             warningAlert.show();
             return;
         }
 
-        // Validación de campos obligatorios para actualizar (incluye ComboBox)
         if (txtUsuario.getText().isEmpty() || txtContrasena.getText().isEmpty() ||
-                cmbRol.getValue() == null || cmbEstado.getValue() == null) {
+            cmbRol.getValue() == null || cmbEstado.getValue() == null) {
 
-            warningAlert
-                    .setContentText("Complete todos los campos necesarios para actualizar, incluyendo Rol y Estado.");
+            warningAlert.setContentText("Complete todos los campos para actualizar");
             warningAlert.show();
             return;
         }
@@ -138,15 +136,14 @@ public class UsuarioAccesoController {
     @FXML
     void buscarUsuario(ActionEvent event) {
         if (txtId.getText().isEmpty()) {
-            warningAlert.setContentText("Ingrese el ID del usuario a buscr.");
+            warningAlert.setContentText("Ingrese el ID del usuario a buscar.");
             warningAlert.show();
             return;
         }
 
         try {
 
-            UsuarioAccesoModelo usuario = AppServices.getUsuarioAccesoModelo()
-                    .buscarUsuario(Integer.parseInt(txtId.getText()));
+            UsuarioAccesoModelo usuario = AppServices.getUsuarioAccesoModelo().buscarUsuario(Integer.parseInt(txtId.getText()));
 
             if (usuario != null) {
                 txtId.setText(String.valueOf(usuario.getIdUsuario()));
@@ -181,7 +178,7 @@ public class UsuarioAccesoController {
         colRol.setCellValueFactory(new PropertyValueFactory<>("rol"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
 
-        // Configuración de ComboBox con opciones predefinidas
+
         ObservableList<String> roles = FXCollections.observableArrayList(
                 "ADMINISTRADOR",
                 "RECEPCION");
@@ -204,7 +201,7 @@ public class UsuarioAccesoController {
 
     }
 
-    private void actualizarTabla() {
+    public void actualizarTabla() {
         tblUsuarios.getItems().clear();
         try {
             tblUsuarios.getItems().addAll(AppServices.getUsuarioAccesoModelo().obtenerUsuarios());
