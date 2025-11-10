@@ -61,19 +61,20 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Button>
+                        <Button mnemonicParsing="false" onAction="#actualizarTabla" text="Refrescar" />
                      </children>
                   </HBox>
                   <TableView fx:id="tblHistorialCitas" prefHeight="345.0" prefWidth="900.0" VBox.vgrow="NEVER">
                     <columns>
-                      <TableColumn prefWidth="50.0" text="#" />
-                      <TableColumn prefWidth="75.0" text="Usuario" />
-                        <TableColumn prefWidth="75.0" text="Fecha" />
-                        <TableColumn prefWidth="75.0" text="Hora" />
-                        <TableColumn prefWidth="90.0" text="Placa" />
-                        <TableColumn prefWidth="120.0" text="Cliente" />
-                        <TableColumn prefWidth="150.0" text="Servicio" />
-                        <TableColumn prefWidth="120.0" text="Mecanico" />
-                        <TableColumn prefWidth="180.0" text="Estado " />
+                      <TableColumn fx:id="colIdCita" prefWidth="50.0" text="#" />
+                      <TableColumn fx:id="colUsuario" prefWidth="75.0" text="Usuario" />
+                        <TableColumn fx:id="colFecha" prefWidth="75.0" text="Fecha" />
+                        <TableColumn fx:id="colHora" prefWidth="75.0" text="Hora" />
+                        <TableColumn fx:id="colPlaca" prefWidth="90.0" text="Placa" />
+                        <TableColumn fx:id="colCliente" prefWidth="120.0" text="Cliente" />
+                        <TableColumn fx:id="colServicio" prefWidth="150.0" text="Servicio" />
+                        <TableColumn fx:id="colMecanico" prefWidth="120.0" text="Mecanico" />
+                        <TableColumn fx:id="colEstado" prefWidth="180.0" text="Estado " />
                     </columns>
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />

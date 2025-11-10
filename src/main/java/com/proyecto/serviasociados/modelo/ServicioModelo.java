@@ -16,8 +16,6 @@ public class ServicioModelo {
     private String nomServicio;
     private String tiempo;
 
-    //constructores 
-
     public ServicioModelo() {
     }
 
@@ -26,7 +24,6 @@ public class ServicioModelo {
         this.nomServicio = nomServicio;
         this.tiempo = tiempo;
     }
-
 
     public int getServicioId() {
         return servicioId;
@@ -40,7 +37,7 @@ public class ServicioModelo {
         return tiempo;
     }
 
-    // Sirve para mostrar el nombre del servicio en el JComboBox.
+    //Funcion: pPra mostrar el nombre del servicio en el JComboBox.
     @Override
     public String toString() {
         return nomServicio;

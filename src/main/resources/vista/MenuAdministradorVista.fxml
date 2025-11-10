@@ -93,7 +93,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirMecanico" prefHeight="45.0" style="-fx-background-color: #003a69;" text="Mecanicos" textFill="WHITE" wrapText="true">
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" mnemonicParsing="false" onAction="#abrirServicioMecanico" prefHeight="45.0" style="-fx-background-color: #003a69;" text="Servicios/Mecanicos" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>

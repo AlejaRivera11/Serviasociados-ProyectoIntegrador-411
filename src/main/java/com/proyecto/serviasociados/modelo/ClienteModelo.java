@@ -9,18 +9,18 @@ import java.sql.CallableStatement;
 import com.proyecto.serviasociados.services.ConexionBDD;
 
 public class ClienteModelo {
+
     private int idCliente;
     private String nombreCliente;
     private String telefonoCliente;
     private String correoCliente;
     private String direccionCliente;
 
-    // Constructores
+    
     public ClienteModelo() {
     }
 
-    public ClienteModelo(int idCliente, String nombreCliente, String telefonoCliente, String correoCliente,
-            String direccionCliente) {
+    public ClienteModelo(int idCliente, String nombreCliente, String telefonoCliente, String correoCliente, String direccionCliente) {
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
         this.telefonoCliente = telefonoCliente;
@@ -28,7 +28,7 @@ public class ClienteModelo {
         this.direccionCliente = direccionCliente;
     }
 
-    // Getters y Setters
+   
     public int getIdCliente() {
         return idCliente;
     }
@@ -85,7 +85,7 @@ public class ClienteModelo {
 
     }
 
-    // Método para actualizar Cliente
+    // Método para actualizar un cliente 
     public boolean actualizarCliente() throws SQLException {
         String sql = "{CALL sp_actualizar_cliente(?, ?, ?, ?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
@@ -111,7 +111,7 @@ public class ClienteModelo {
         }
     }
 
-    // Metodod para buscar un cliente por su id
+    // Metodo para buscar un cliente por su id
     public ClienteModelo buscarCliente(int idCliente) throws SQLException {
         ClienteModelo cliente = null;
         String sql = "{CALL sp_buscar_cliente(?)}";

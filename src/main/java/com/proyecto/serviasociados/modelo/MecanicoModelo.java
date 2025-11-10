@@ -16,7 +16,6 @@ public class MecanicoModelo {
     private String telefonoMecanico;
     private String direccionMecanico;
 
-    //Constructores
     public MecanicoModelo() {
     }
 
@@ -44,7 +43,7 @@ public class MecanicoModelo {
         return direccionMecanico;
     }
 
-    // Sirve para mostrar el nombre del mecánico en el JComboBox.
+    // Funcion: Para mostrar el nombre del mecánico en el JComboBox.
     @Override
     public String toString() {
         return nombreMecanico;

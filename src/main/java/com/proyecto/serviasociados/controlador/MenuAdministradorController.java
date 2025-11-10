@@ -68,8 +68,8 @@ public class MenuAdministradorController {
 
     }
 
-    @FXML void abrirMecanico(ActionEvent event) throws IOException {
-        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/MecanicoVista.fxml"));
+    @FXML void abrirServicioMecanico(ActionEvent event) throws IOException {
+        FXMLLoader loaderEst = new FXMLLoader(getClass().getResource("/vista/ServiciosMecanicosVista.fxml"));
         Stage stageEst = new Stage();
         stageEst.setScene(new Scene(loaderEst.load()));
         stageEst.setTitle("Mecanicos");
