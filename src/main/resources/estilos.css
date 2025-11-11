@@ -16,6 +16,13 @@
     -fx-font-weight: bold;
 }
 
+/* ======== LABELS LOGIN ======== */
+.Login {
+    -fx-font-size: 11px;
+    -fx-text-fill: #0a3d62;
+    -fx-font-weight: bold;
+}
+
 /* ENACABEZADO Y TITULO PRINCIPAL*/
 .header-label {
     -fx-text-fill: white;

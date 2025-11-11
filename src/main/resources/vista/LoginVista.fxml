@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="400.0" styleClass="Login" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="450.0" styleClass="Login" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.LoginController">
    <top>
       <HBox prefHeight="45.0" prefWidth="400.0" styleClass="header-pane-login" stylesheets="@../estilos.css" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="45.0" styleClass="header-label" stylesheets="@../estilos.css" text="Serviasociados - Iniciar Sesion" />
+            <Label prefHeight="45.0" styleClass="header-label" stylesheets="@../estilos.css" text="Serviasociados - Iniciar Sesión" />
          </children>
          <BorderPane.margin>
             <Insets />
@@ -28,9 +28,9 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-container">
                      <image>
-                        <Image url="@../imagenes/Logo.jpeg" />
+                        <Image url="@../imagenes/Logo%20sin%20fondo.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="20.0" />
@@ -54,6 +54,26 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #003a69;" stylesheets="@../estilos.css" text="Ingresar" />
                </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <Label styleClass="Login" text="¿Olvidó su contraseña?">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" styleClass="Login">
+               <children>
+                  <Label styleClass="Login" text="Por favor comuniquese con el administrador." />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>

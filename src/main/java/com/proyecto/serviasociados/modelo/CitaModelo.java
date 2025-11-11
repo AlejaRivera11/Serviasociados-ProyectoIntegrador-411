@@ -169,7 +169,7 @@ public class CitaModelo {
     public boolean actualizarEstadoCita(int citaId, String nuevoEstado) throws SQLException {
         String sql = "{CALL sp_actualizar_estado_cita(?, ?)}";
         try (Connection con = ConexionBDD.getConnection();
-            CallableStatement cs = (CallableStatement) con.prepareCall(sql)) {
+            CallableStatement cs = con.prepareCall(sql)) {
 
             cs.setInt(1, citaId);
             cs.setString(2, nuevoEstado);
