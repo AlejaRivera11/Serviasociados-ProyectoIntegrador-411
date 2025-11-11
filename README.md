@@ -1,7 +1,7 @@
 # Serviasociados - Sistema de Agendamiento para Taller
 
 ## Integrantes
-Sebastian Medellin Quintero
+Sebastian Medellin Quintero  
 Alejandra Rivera Montero
 
 ## Descripción
