@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.CitasProgramadasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="960.0" stylesheets="@../estilos.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyecto.serviasociados.controlador.CitasProgramadasController">
    <top>
       <HBox prefHeight="45.0" prefWidth="930.0" style="-fx-background-color: #003a69;" BorderPane.alignment="CENTER">
          <children>
@@ -51,7 +51,7 @@
    <center>
       <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="405.0" prefWidth="960.0">
                <children>
                   <HBox alignment="CENTER" spacing="30.0" VBox.vgrow="NEVER">
                      <children>
@@ -73,15 +73,15 @@
                   </HBox>
                   <TableView fx:id="tblCita" prefHeight="345.0" prefWidth="900.0" VBox.vgrow="NEVER">
                     <columns>
-                      <TableColumn fx:id="colIdCita" prefWidth="50.0" text="#" />
+                      <TableColumn fx:id="colIdCita" prefWidth="32.0" text="#" />
                       <TableColumn fx:id="colUsuario" prefWidth="60.0" text="Usuario" />
-                        <TableColumn fx:id="colFecha" prefWidth="65.0" text="Fecha" />
-                        <TableColumn fx:id="ColHora" prefWidth="75.0" text="Hora" />
-                        <TableColumn fx:id="ColPlaca" prefWidth="90.0" text="Placa" />
-                        <TableColumn fx:id="ColCliente" prefWidth="136.0" text="Cliente" />
-                        <TableColumn fx:id="ColServicio" prefWidth="208.0" text="Servicio" />
-                        <TableColumn fx:id="ColMecanico" prefWidth="101.0" text="Mecanico" />
-                        <TableColumn fx:id="ColEstado" prefWidth="114.0" text="Estado " />
+                        <TableColumn fx:id="colFecha" prefWidth="79.0" text="Fecha" />
+                        <TableColumn fx:id="ColHora" prefWidth="58.0" text="Hora" />
+                        <TableColumn fx:id="ColPlaca" prefWidth="118.0" text="Placa" />
+                        <TableColumn fx:id="ColCliente" prefWidth="138.0" text="Cliente" />
+                        <TableColumn fx:id="ColServicio" prefWidth="195.0" text="Servicio" />
+                        <TableColumn fx:id="ColMecanico" prefWidth="130.0" text="Mecanico" />
+                        <TableColumn fx:id="ColEstado" prefWidth="92.0" text="Estado " />
                     </columns>
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
